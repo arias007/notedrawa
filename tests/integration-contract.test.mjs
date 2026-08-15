@@ -70,12 +70,12 @@ test("registered surfaces expose stable handles and structured actions without c
   assert.match(source, /createRegisteredSurfaceHandle\(record, controller, ready\)/);
   assert.match(source, /ready: Promise\.resolve\(ready\)\.then\(\(\) => void 0\)/);
   assert.match(source, /activate: async \(toolOrOptions = \{\}\)/);
-  assert.match(source, /deactivate: \(\) => plugin\.deactivateApi/);
+  assert.match(source, /deactivate: \(\) => this\.deactivateApi/);
   assert.match(source, /toggle: async \(options = \{\}\)/);
   assert.match(source, /setTool: \(tool, options = \{\}\)/);
   assert.match(source, /execute: async \(actions, options = \{\}\)/);
   assert.match(source, /getElements: async \(options = \{\}\)/);
-  assert.match(source, /destroy: \(\) => plugin\.destroyRegisteredSurface/);
+  assert.match(source, /destroy: \(\) => this\.destroyRegisteredSurface/);
   assert.doesNotMatch(source.slice(source.indexOf("  createRegisteredSurfaceHandle("), source.indexOf("  destroyRegisteredSurface(", source.indexOf("  createRegisteredSurfaceHandle("))), /controller:/);
   assert.match(source, /if \(Array\.isArray\(action\)\)/);
   assert.match(source, /action\.op \|\| action\.action \|\| action\.type/);
