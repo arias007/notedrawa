@@ -1,15 +1,23 @@
 {
   "compilerOptions": {
-    "allowJs": true,
-    "checkJs": false,
+    "baseUrl": ".",
+    "inlineSourceMap": true,
+    "inlineSources": true,
+    "module": "ESNext",
     "target": "ES2020",
-    "module": "CommonJS",
-    "moduleResolution": "Node",
-    "strict": false,
-    "skipLibCheck": true,
-    "noEmit": true
+    "allowJs": false,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "importHelpers": true,
+    "isolatedModules": true,
+    "strictNullChecks": true,
+    "lib": [
+      "DOM",
+      "ES2020"
+    ]
   },
   "include": [
-    "src/**/*.js"
+    "src/**/*.ts"
   ]
 }

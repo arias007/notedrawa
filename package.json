@@ -1,26 +1,35 @@
 {
-  "name": "notedrawa",
-  "version": "0.0.2",
-  "description": "Draw and edit directly on notes with an open API for AI-assisted workflows.",
+  "name": "cancip",
+  "version": "0.0.3",
+  "private": true,
   "main": "main.js",
   "scripts": {
-    "build": "node esbuild.config.mjs",
-    "check": "node --check main.js",
-    "test": "node --test tests/*.test.mjs",
-    "verify": "npm run test && npm run build && npm run check"
+    "verify:source-parity": "node scripts/verify-source-runtime-parity.mjs",
+    "verify:feature-regressions": "node scripts/verify-feature-regressions.mjs",
+    "verify:agent-bridge": "node scripts/verify-agent-bridge.mjs",
+    "verify:plugin-compatibility": "node scripts/verify-plugin-compatibility.mjs",
+    "verify:obsidian-community": "node scripts/verify-obsidian-community-standards.mjs",
+    "test:office-context-edit": "node scripts/verify-office-context-edit.mjs",
+    "test:document-package-edit": "node scripts/verify-document-package-edit.mjs",
+    "test:tts": "node scripts/verify-tts-regression.mjs",
+    "build:ocr-package": "node scripts/prepare-ocr-package.mjs",
+    "build": "npm run verify:source-parity && npm run verify:feature-regressions && npm run verify:agent-bridge && npm run verify:plugin-compatibility && npm run verify:obsidian-community && npm run test:office-context-edit && npm run test:document-package-edit && tsc --noEmit --skipLibCheck && node scripts/prepare-release-output.mjs && node esbuild.config.mjs production",
+    "check": "tsc --noEmit --skipLibCheck",
+    "verify": "npm run check && npm run build"
   },
-  "keywords": [
-    "obsidian",
-    "notes",
-    "drawing",
-    "annotation",
-    "ai"
-  ],
-  "author": "Murat",
-  "license": "MIT",
   "devDependencies": {
-    "@types/node": "^24.0.0",
-    "esbuild": "^0.28.1",
-    "obsidian": "^1.8.7"
+    "@types/node": "^20.14.10",
+    "esbuild": "^0.25.12",
+    "obsidian": "^1.13.1",
+    "typescript": "^5.5.4"
+  },
+  "dependencies": {
+    "@codemirror/state": "6.5.0",
+    "@codemirror/view": "6.38.6",
+    "fflate": "^0.8.2",
+    "html2canvas": "^1.4.1",
+    "onnxruntime-web": "^1.27.0",
+    "pinyin-pro": "^3.28.1",
+    "tesseract.js": "6.0.1"
   }
 }
